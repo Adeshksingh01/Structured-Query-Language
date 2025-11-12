@@ -2,7 +2,21 @@ create database company1;
 
 use company1;
 
-SELECT * FROM company1.sale;
+create table sale(sale_id int unique, product varchar(50), category varchar(50), quantity int, price int, region varchar(50), sales_person varchar(50), sale_date date);
+
+insert into sale(sale_id,product,category,quantity,price,region,sales_person,sale_date) values
+(1,"Laptop","Electronics",5,50000,"East","John","2024-01-05"),
+(2,"Mobile","Electronics",10,20000,"West","Mary","2024-01-10"),
+(3,"Chair","Furniture",20,1500,"East","John","2024-02-15"),
+(4,"Table","Furniture",8,5000,"North","Steve","2024-02-18"),
+(5,"Laptop","Electronics",7,55000,"South","Mary","2024-03-01"),
+(6,"Mobile","Electronics",15,18000,"East","John","2024-03-05"),
+(7,"Sofa","Furniture",3,25000,"West","Steve","2024-03-20"),
+(8,"Laptop","Electronics",2,52000,"North","Mary","2024-04-02"),
+(9,"Chair","Furniture",30,1200,"South","John","2024-04-12"),
+(10,"Mobile","Electronics",12,22000,"West","Steve","2024-04-15");
+
+select * from sale;
 
 #1.Find total sales amount for each region.
 select region, sum(price * quantity) as Sales_amount
@@ -124,7 +138,6 @@ from sale
 group by category
 having avg(price) > 20000
 order by Minimum_average limit 1;
-
 
 #20. Find region and sales_person combination where revenue > 200000.
 select region, sales_person, sum(price * quantity) as Revenue
